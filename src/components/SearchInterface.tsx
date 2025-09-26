@@ -30,7 +30,7 @@ const SearchInterface = () => {
     permissions: ['Document Access', 'Technical Reports', 'Maintenance Records', 'Safety Protocols']
   };
 
-  // Comprehensive dummy document data
+  // Comprehensive dummy document data with diverse Malayalam documents
   const allDocuments = [
     {
       id: '1',
@@ -121,6 +121,141 @@ const SearchInterface = () => {
       fileSize: '1.5 MB',
       summary: 'Detailed analysis of passenger movement patterns, peak usage times, and recommendations for service optimization.',
       summaryMalayalam: 'പാസഞ്ചർ ചലന പാറ്റേണുകൾ, പീക്ക് ഉപയോഗ സമയങ്ങൾ, സേവന ഒപ്റ്റിമൈസേഷനുള്ള ശുപാർശകൾ എന്നിവയുടെ വിശദമായ വിശകലനം.'
+    },
+    {
+      id: '7',
+      title: 'Power Supply System Documentation',
+      titleMalayalam: 'വൈദ്യുതി വിതരണ സിസ്റ്റം ഡോക്യുമെന്റേഷൻ',
+      content: 'Comprehensive documentation of the metro power supply systems and electrical infrastructure.',
+      contentMalayalam: 'മെട്രോ വൈദ്യുതി വിതരണ സിസ്റ്റങ്ങളുടെയും ഇലക്ട്രിക്കൽ ഇൻഫ്രാസ്ട്രക്ചറിന്റെയും സമഗ്ര ഡോക്യുമെന്റേഷൻ.',
+      type: 'Technical Document',
+      date: '18 Nov 2024',
+      author: 'Vinu George',
+      department: 'Electrical',
+      tags: ['Power', 'വൈദ്യുതി', 'Electrical', 'Infrastructure'],
+      fileSize: '5.2 MB',
+      summary: 'Technical documentation covering 750V DC traction power systems, substations, and backup power arrangements.',
+      summaryMalayalam: '750വോൾട്ട് ഡിസി ട്രാക്ഷൻ പവർ സിസ്റ്റങ്ങൾ, സബ്സ്റ്റേഷനുകൾ, ബാക്കപ്പ് പവർ ക്രമീകരണങ്ങൾ എന്നിവ ഉൾക്കൊള്ളുന്ന സാങ്കേതിക ഡോക്യുമെന്റേഷൻ.'
+    },
+    {
+      id: '8',
+      title: 'Station Cleaning and Hygiene Protocol',
+      titleMalayalam: 'സ്റ്റേഷൻ ശുചീകരണവും ശുചിത്വ പ്രോട്ടോക്കോളും',
+      content: 'Standard operating procedures for station cleaning, sanitization, and hygiene maintenance.',
+      contentMalayalam: 'സ്റ്റേഷൻ ശുചീകരണം, അണുനശീകരണം, ശുചിത്വ പരിപാലനം എന്നിവയ്ക്കുള്ള സ്റ്റാൻഡേർഡ് ഓപ്പറേറ്റിംഗ് പ്രൊസീജ്യറുകൾ.',
+      type: 'SOP Document',
+      date: '12 Nov 2024',
+      author: 'Leela Devi',
+      department: 'Facilities',
+      tags: ['Cleaning', 'ശുചീകരണം', 'Hygiene', 'SOP'],
+      fileSize: '1.2 MB',
+      summary: 'Detailed procedures for daily cleaning schedules, sanitization protocols, and waste management in metro stations.',
+      summaryMalayalam: 'മെട്രോ സ്റ്റേഷനുകളിലെ ദൈനംദിന ശുചീകരണ ഷെഡ്യൂൾ, അണുനശീകരണ പ്രോട്ടോക്കോളുകൾ, മാലിന്യ സംസ്കരണം എന്നിവയ്ക്കുള്ള വിശദമായ നടപടിക്രമങ്ങൾ.'
+    },
+    {
+      id: '9',
+      title: 'Train Operating Manual - Malayalam Version',
+      titleMalayalam: 'ട്രെയിൻ ഓപ്പറേറ്റിംഗ് മാന്വൽ - മലയാളം പതിപ്പ്',
+      content: 'Complete train operating manual translated into Malayalam for local operators.',
+      contentMalayalam: 'പ്രാദേശിക ഓപ്പറേറ്റർമാർക്കായി മലയാളത്തിലേക്ക് വിവർത്തനം ചെയ്ത സമ്പൂർണ്ണ ട്രെയിൻ ഓപ്പറേറ്റിംഗ് മാന്വൽ.',
+      type: 'Operating Manual',
+      date: '5 Nov 2024',
+      author: 'Radhika Menon',
+      department: 'Training',
+      tags: ['Operating', 'പ്രവർത്തനം', 'Manual', 'Malayalam'],
+      fileSize: '6.8 MB',
+      summary: 'Comprehensive Malayalam translation of train operating procedures, safety protocols, and emergency procedures.',
+      summaryMalayalam: 'ട്രെയിൻ ഓപ്പറേറ്റിംഗ് പ്രൊസീജ്യറുകൾ, സുരക്ഷാ പ്രോട്ടോക്കോളുകൾ, അടിയന്തര നടപടിക്രമങ്ങൾ എന്നിവയുടെ സമഗ്ര മലയാളം വിവർത്തനം.'
+    },
+    {
+      id: '10',
+      title: 'Passenger Communication Guidelines',
+      titleMalayalam: 'പാസഞ്ചർ കമ്യൂണിക്കേഷൻ മാർഗ്ഗനിർദ്ദേശങ്ങൾ',
+      content: 'Guidelines for effective passenger communication in both English and Malayalam.',
+      contentMalayalam: 'ഇംഗ്ലീഷിലും മലയാളത്തിലും ഫലപ്രദമായ പാസഞ്ചർ കമ്യൂണിക്കേഷനുള്ള മാർഗ്ഗനിർദ്ദേശങ്ങൾ.',
+      type: 'Guidelines',
+      date: '28 Oct 2024',
+      author: 'Sindhu Raj',
+      department: 'Customer Service',
+      tags: ['Communication', 'ആശയവിനിമയം', 'Passenger', 'Guidelines'],
+      fileSize: '950 KB',
+      summary: 'Standard phrases, announcements, and communication protocols for passenger interaction in multilingual environment.',
+      summaryMalayalam: 'ബഹുഭാഷാ പരിതസ്ഥിതിയിൽ യാത്രക്കാരുമായുള്ള ഇടപെടലിനുള്ള സാധാരണ വാക്യങ്ങൾ, പ്രഖ്യാപനങ്ങൾ, ആശയവിനിമയ പ്രോട്ടോക്കോളുകൾ.'
+    },
+    {
+      id: '11',
+      title: 'CCTV Surveillance System Report',
+      titleMalayalam: 'സിസിടിവി നിരീക്ഷണ സിസ്റ്റം റിപ്പോർട്ട്',
+      content: 'Monthly report on CCTV surveillance system performance and security monitoring.',
+      contentMalayalam: 'സിസിടിവി നിരീക്ഷണ സിസ്റ്റത്തിന്റെ പ്രകടനവും സുരക്ഷാ നിരീക്ഷണവും സംബന്ധിച്ച മാസിക റിപ്പോർട്ട്.',
+      type: 'Security Report',
+      date: '25 Oct 2024',
+      author: 'Arun Prakash',
+      department: 'Security',
+      tags: ['CCTV', 'നിരീക്ഷണം', 'Security', 'Surveillance'],
+      fileSize: '2.1 MB',
+      summary: 'Analysis of CCTV coverage, system uptime, recorded incidents, and security breach prevention measures.',
+      summaryMalayalam: 'സിസിടിവി കവറേജ്, സിസ്റ്റം അപ്ടൈം, രേഖപ്പെടുത്തിയ സംഭവങ്ങൾ, സുരക്ഷാ ലംഘന തടയൽ നടപടികൾ എന്നിവയുടെ വിശകലനം.'
+    },
+    {
+      id: '12',
+      title: 'Air Conditioning System Maintenance',
+      titleMalayalam: 'എയർ കണ്ടീഷനിംഗ് സിസ്റ്റം മെയിന്റനൻസ്',
+      content: 'Maintenance schedule and procedures for metro air conditioning systems.',
+      contentMalayalam: 'മെട്രോ എയർ കണ്ടീഷനിംഗ് സിസ്റ്റങ്ങളുടെ അറ്റകുറ്റപ്പണി ഷെഡ്യൂളും നടപടിക്രമങ്ങളും.',
+      type: 'Maintenance Guide',
+      date: '20 Oct 2024',
+      author: 'Biju Thomas',
+      department: 'HVAC',
+      tags: ['HVAC', 'എയർകണ്ടീഷനിംഗ്', 'Maintenance', 'Climate'],
+      fileSize: '3.5 MB',
+      summary: 'Detailed maintenance procedures for train and station HVAC systems including filter replacement and system diagnostics.',
+      summaryMalayalam: 'ട്രെയിനിലെയും സ്റ്റേഷനിലെയും എച്ച്വിഎസി സിസ്റ്റങ്ങളുടെ ഫിൽട്ടർ മാറ്റിസ്ഥാപിക്കലും സിസ്റ്റം ഡയഗ്നോസ്റ്റിക്സും ഉൾപ്പെടെയുള്ള വിശദമായ അറ്റകുറ്റപ്പണി നടപടിക്രമങ്ങൾ.'
+    },
+    {
+      id: '13',
+      title: 'Revenue Collection and Audit Report',
+      titleMalayalam: 'വരുമാന ശേഖരണവും ഓഡിറ്റ് റിപ്പോർട്ടും',
+      content: 'Monthly revenue collection analysis and financial audit report.',
+      contentMalayalam: 'മാസിക വരുമാന ശേഖരണ വിശകലനവും സാമ്പത്തിക ഓഡിറ്റ് റിപ്പോർട്ടും.',
+      type: 'Financial Report',
+      date: '15 Oct 2024',
+      author: 'Jayasree Nair',
+      department: 'Finance',
+      tags: ['Revenue', 'വരുമാനം', 'Audit', 'Finance'],
+      fileSize: '2.8 MB',
+      summary: 'Comprehensive analysis of ticket sales, digital payments, fare collection efficiency, and financial reconciliation.',
+      summaryMalayalam: 'ടിക്കറ്റ് വിൽപ്പന, ഡിജിറ്റൽ പേയ്മെന്റുകൾ, യാത്രാ നിരക്ക് ശേഖരണ കാര്യക്ഷമത, സാമ്പത്തിക പൊരുത്തപ്പെടുത്തൽ എന്നിവയുടെ സമഗ്ര വിശകലനം.'
+    },
+    {
+      id: '14',
+      title: 'Fire Safety and Prevention Protocol',
+      titleMalayalam: 'അഗ്നിസുരക്ഷയും പ്രതിരോധ പ്രോട്ടോക്കോളും',
+      content: 'Fire safety procedures and prevention protocols for metro infrastructure.',
+      contentMalayalam: 'മെട്രോ ഇൻഫ്രാസ്ട്രക്ചറിനുള്ള അഗ്നിസുരക്ഷാ നടപടിക്രമങ്ങളും പ്രതിരോധ പ്രോട്ടോക്കോളുകളും.',
+      type: 'Fire Safety Manual',
+      date: '10 Oct 2024',
+      author: 'Captain Mohan Das',
+      department: 'Fire Safety',
+      tags: ['Fire Safety', 'അഗ്നിസുരക്ഷ', 'Prevention', 'Emergency'],
+      fileSize: '4.3 MB',
+      summary: 'Comprehensive fire prevention measures, detection systems, evacuation procedures, and firefighting protocols.',
+      summaryMalayalam: 'സമഗ്ര അഗ്നി പ്രതിരോധ നടപടികൾ, കണ്ടെത്തൽ സിസ്റ്റങ്ങൾ, ഒഴിപ്പിക്കൽ നടപടിക്രമങ്ങൾ, അഗ്നിശമന പ്രോട്ടോക്കോളുകൾ.'
+    },
+    {
+      id: '15',
+      title: 'Environmental Impact Assessment',
+      titleMalayalam: 'പരിസ്ഥിതി ആഘാത മൂല്യനിർണ്ണയം',
+      content: 'Annual environmental impact assessment of metro operations and sustainability measures.',
+      contentMalayalam: 'മെട്രോ പ്രവർത്തനങ്ങളുടെയും സുസ്ഥിരത നടപടികളുടെയും വാർഷിക പരിസ്ഥിതി ആഘാത മൂല്യനിർണ്ണയം.',
+      type: 'Environmental Report',
+      date: '5 Oct 2024',
+      author: 'Dr. Kavitha Menon',
+      department: 'Environment',
+      tags: ['Environment', 'പരിസ്ഥിതി', 'Sustainability', 'Assessment'],
+      fileSize: '3.7 MB',
+      summary: 'Assessment of carbon footprint, energy consumption, waste management, and green initiatives in metro operations.',
+      summaryMalayalam: 'മെട്രോ പ്രവർത്തനങ്ങളിലെ കാർബൺ കാൽപ്പാട്, ഊർജ്ജ ഉപഭോഗം, മാലിന്യ സംസ്കരണം, ഹരിത സംരംഭങ്ങൾ എന്നിവയുടെ മൂല്യനിർണ്ണയം.'
     }
   ];
 
