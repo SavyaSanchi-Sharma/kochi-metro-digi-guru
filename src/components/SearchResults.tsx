@@ -80,7 +80,31 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query, results, isLoading
               Found {results.length} documents for "{query}"
             </p>
           </div>
-          <Button variant="outline" className="border-white/20">
+          <Button 
+            variant="outline" 
+            className="border-white/20"
+            onClick={() => {
+              // Simulate bulk export
+              const exportData = results.map(doc => ({
+                title: doc.title,
+                author: doc.author,
+                date: doc.date,
+                department: doc.department,
+                summary: doc.summary
+              }));
+              
+              const dataStr = JSON.stringify(exportData, null, 2);
+              const dataBlob = new Blob([dataStr], { type: 'application/json' });
+              const url = URL.createObjectURL(dataBlob);
+              const link = document.createElement('a');
+              link.href = url;
+              link.download = `search-results-${new Date().toISOString().split('T')[0]}.json`;
+              link.click();
+              URL.revokeObjectURL(url);
+              
+              // toast.success(`Exported ${results.length} search results`);
+            }}
+          >
             <Download className="h-4 w-4 mr-2" />
             Export Results
           </Button>
@@ -138,27 +162,59 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query, results, isLoading
                   <Clock className="h-4 w-4" />
                   <span>Department: {doc.department}</span>
                 </div>
-                <div className="flex space-x-2">
-                  <Button size="sm" variant="outline" className="border-white/20">
-                    <ExternalLink className="h-4 w-4 mr-1" />
-                    View
-                  </Button>
-                  <Button size="sm" variant="outline" className="border-white/20">
-                    <Download className="h-4 w-4 mr-1" />
-                    Download
-                  </Button>
-                </div>
+              <div className="flex space-x-2">
+                <Button 
+                  size="sm" 
+                  variant="outline" 
+                  className="border-white/20"
+                  onClick={() => {
+                    window.open(`/document/${doc.id}`, '_blank');
+                    // toast.success('Opening document viewer');
+                  }}
+                >
+                  <ExternalLink className="h-4 w-4 mr-1" />
+                  View
+                </Button>
+                <Button 
+                  size="sm" 
+                  variant="outline" 
+                  className="border-white/20"
+                  onClick={() => {
+                    // Simulate download
+                    const link = document.createElement('a');
+                    link.href = '#';
+                    link.download = `${doc.title}.pdf`;
+                    link.click();
+                    // toast.success(`Downloading ${doc.title}`);
+                  }}
+                >
+                  <Download className="h-4 w-4 mr-1" />
+                  Download
+                </Button>
+              </div>
               </div>
             </Card>
           ))}
         </div>
 
         {/* Load More */}
-        <div className="text-center mt-8">
-          <Button variant="outline" className="border-white/20">
-            Load More Results
-          </Button>
-        </div>
+        {results.length >= 3 && (
+          <div className="text-center mt-8">
+            <Button 
+              variant="outline" 
+              className="border-white/20"
+              onClick={() => {
+                // toast.info('Loading more results...');
+                // Simulate loading more results
+                setTimeout(() => {
+                  // toast.success('No more results to load');
+                }, 1000);
+              }}
+            >
+              Load More Results
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

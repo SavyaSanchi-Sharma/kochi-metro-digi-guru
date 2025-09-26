@@ -8,12 +8,15 @@ import { toast } from 'sonner';
 import heroImage from '@/assets/kochi-metro-hero.jpg';
 import UserProfile from './UserProfile';
 import SearchResults from './SearchResults';
+import AdvancedFilters, { FilterCriteria } from './AdvancedFilters';
 
 const SearchInterface = () => {
   const [query, setQuery] = useState('');
   const [isSearching, setIsSearching] = useState(false);
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [hasSearched, setHasSearched] = useState(false);
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
+  const [activeFilters, setActiveFilters] = useState<FilterCriteria>({});
 
   // Dummy user data
   const currentUser = {
@@ -27,8 +30,8 @@ const SearchInterface = () => {
     permissions: ['Document Access', 'Technical Reports', 'Maintenance Records', 'Safety Protocols']
   };
 
-  // Dummy Malayalam document data
-  const dummyDocuments = [
+  // Comprehensive dummy document data
+  const allDocuments = [
     {
       id: '1',
       title: 'Monthly Maintenance Report - Rolling Stock',
@@ -73,8 +76,102 @@ const SearchInterface = () => {
       fileSize: '856 KB',
       summary: 'Weekly engineering meeting discussing track inspection results, maintenance scheduling, and resource allocation for upcoming projects.',
       summaryMalayalam: 'ട്രാക്ക് പരിശോധന ഫലങ്ങൾ, അറ്റകുറ്റപ്പണി ഷെഡ്യൂളിംഗ്, വരാനിരിക്കുന്ന പ്രോജക്ടുകൾക്കുള്ള റിസോഴ്സ് അലോക്കേഷൻ എന്നിവ ചർച്ച ചെയ്യുന്ന പ്രാപ്തിക എഞ്ചിനീയറിംഗ് മീറ്റിംഗ്.'
+    },
+    {
+      id: '4',
+      title: 'Technical Specifications - Signal System',
+      titleMalayalam: 'സാങ്കേതിക സ്പെസിഫിക്കേഷൻസ് - സിഗ്നൽ സിസ്റ്റം',
+      content: 'Detailed technical specifications for the metro signal system including CBTC implementation.',
+      contentMalayalam: 'സിബിടിസി നടപ്പാക്കൽ ഉൾപ്പെടെയുള്ള മെട്രോ സിഗ്നൽ സിസ്റ്റത്തിന്റെ വിശദമായ സാങ്കേതിക സ്പെസിഫിക്കേഷനുകൾ.',
+      type: 'Technical Document',
+      date: '5 Dec 2024',
+      author: 'Ravi Kumar',
+      department: 'Signal & Telecom',
+      tags: ['Technical', 'സാങ്കേതിക', 'Signal', 'CBTC'],
+      fileSize: '3.2 MB',
+      summary: 'Complete technical documentation for Communication Based Train Control system implementation and maintenance procedures.',
+      summaryMalayalam: 'കമ്യൂണിക്കേഷൻ ബേസ്ഡ് ട്രെയിൻ കൺട്രോൾ സിസ്റ്റം നടപ്പാക്കലിനും അറ്റകുറ്റപ്പണി നടപടിക്രമങ്ങൾക്കുമുള്ള പൂർണ്ണമായ സാങ്കേതിക ഡോക്യുമെന്റേഷൻ.'
+    },
+    {
+      id: '5',
+      title: 'Emergency Response Procedure Manual',
+      titleMalayalam: 'അടിയന്തര പ്രതികരണ നടപടിക്രമ കൈപുസ്തകം',
+      content: 'Comprehensive emergency response procedures for various scenarios in metro operations.',
+      contentMalayalam: 'മെട്രോ ഓപ്പറേഷനിലെ വിവിധ സാഹചര്യങ്ങൾക്കുള്ള സമഗ്ര അടിയന്തര പ്രതികരണ നടപടിക്രമങ്ങൾ.',
+      type: 'Emergency Manual',
+      date: '1 Dec 2024',
+      author: 'Meera Nair',
+      department: 'Safety & Security',
+      tags: ['Emergency', 'അടിയന്തിരം', 'Safety', 'Manual'],
+      fileSize: '4.1 MB',
+      summary: 'Emergency protocols for fire, medical emergencies, evacuations, and security incidents in metro operations.',
+      summaryMalayalam: 'മെട്രോ ഓപ്പറേഷനിലെ തീപിടുത്തം, മെഡിക്കൽ എമർജൻസി, ഒഴിപ്പിക്കൽ, സുരക്ഷാ സംഭവങ്ങൾ എന്നിവയ്ക്കുള്ള അടിയന്തര പ്രോട്ടോക്കോളുകൾ.'
+    },
+    {
+      id: '6',
+      title: 'Passenger Traffic Analysis Report',
+      titleMalayalam: 'പാസഞ്ചർ ട്രാഫിക് അനാലിസിസ് റിപ്പോർട്ട്',
+      content: 'Monthly passenger traffic analysis with peak hour data and capacity utilization metrics.',
+      contentMalayalam: 'പീക്ക് അവർ ഡാറ്റയും കപ്പാസിറ്റി ഉപയോഗ മെട്രിക്സും ഉള്ള മാസിക പാസഞ്ചർ ട്രാഫിക് വിശകലനം.',
+      type: 'Analytics Report',
+      date: '20 Nov 2024',
+      author: 'Sanjay Pillai',
+      department: 'Operations',
+      tags: ['Traffic', 'ട്രാഫിക്', 'Analytics', 'Passenger'],
+      fileSize: '1.5 MB',
+      summary: 'Detailed analysis of passenger movement patterns, peak usage times, and recommendations for service optimization.',
+      summaryMalayalam: 'പാസഞ്ചർ ചലന പാറ്റേണുകൾ, പീക്ക് ഉപയോഗ സമയങ്ങൾ, സേവന ഒപ്റ്റിമൈസേഷനുള്ള ശുപാർശകൾ എന്നിവയുടെ വിശദമായ വിശകലനം.'
     }
   ];
+
+  // Function to filter documents based on search query
+  const getFilteredDocuments = (searchQuery: string) => {
+    if (!searchQuery.trim()) return allDocuments;
+    
+    const query = searchQuery.toLowerCase();
+    
+    // Check if query contains Malayalam text or specific keywords
+    if (query.includes('മീറ്റിംഗ്') || query.includes('meeting') || query.includes('സംഗ്രഹം') || query.includes('gist')) {
+      return allDocuments.filter(doc => 
+        doc.type.includes('Meeting') || 
+        doc.tags.some(tag => tag.includes('മീറ്റിംഗ്') || tag.includes('Meeting'))
+      );
+    }
+    
+    if (query.includes('സാങ്കേതിക') || query.includes('technical') || query.includes('സ്പെസിഫിക്കേഷൻ') || query.includes('specification')) {
+      return allDocuments.filter(doc => 
+        doc.type.includes('Technical') || 
+        doc.tags.some(tag => tag.includes('Technical') || tag.includes('സാങ്കേതിക'))
+      );
+    }
+    
+    if (query.includes('സുരക്ഷ') || query.includes('safety') || query.includes('അടിയന്തിരം') || query.includes('emergency')) {
+      return allDocuments.filter(doc => 
+        doc.type.includes('Safety') || doc.type.includes('Emergency') ||
+        doc.tags.some(tag => tag.includes('Safety') || tag.includes('സുരക്ഷ') || tag.includes('Emergency'))
+      );
+    }
+    
+    if (query.includes('മെയിന്റനൻസ്') || query.includes('maintenance') || query.includes('അറ്റകുറ്റപ്പണി')) {
+      return allDocuments.filter(doc => 
+        doc.type.includes('Maintenance') || 
+        doc.tags.some(tag => tag.includes('Maintenance') || tag.includes('മെയിന്റനൻസ്'))
+      );
+    }
+    
+    if (query.includes('ഡോക്യുമെന്റ്') || query.includes('document') || query.includes('രേഖ')) {
+      return allDocuments;
+    }
+    
+    // General search across all fields
+    return allDocuments.filter(doc => 
+      doc.title.toLowerCase().includes(query) ||
+      doc.titleMalayalam.includes(searchQuery) ||
+      doc.content.toLowerCase().includes(query) ||
+      doc.contentMalayalam.includes(searchQuery) ||
+      doc.tags.some(tag => tag.toLowerCase().includes(query) || tag.includes(searchQuery))
+    );
+  };
 
   const handleSearch = () => {
     if (!query.trim()) {
@@ -85,21 +182,100 @@ const SearchInterface = () => {
     setIsSearching(true);
     setHasSearched(true);
     
-    // Simulate API call with dummy data
+    // Simulate API call with intelligent filtering
     setTimeout(() => {
-      setSearchResults(dummyDocuments);
+      const filteredResults = getFilteredDocuments(query);
+      setSearchResults(filteredResults);
       setIsSearching(false);
-      toast.success(`Found ${dummyDocuments.length} documents`);
-    }, 2000);
+      toast.success(`Found ${filteredResults.length} documents matching your query`);
+    }, 1500);
   };
 
   const handleQuickAction = (action: string) => {
-    toast.info(`${action} feature coming soon!`);
+    setIsSearching(true);
+    setHasSearched(true);
+    
+    setTimeout(() => {
+      let filteredResults = [];
+      let actionQuery = '';
+      
+      if (action === 'Date Range Search') {
+        // Filter documents from last 10 days
+        filteredResults = allDocuments.filter(doc => 
+          new Date(doc.date) >= new Date('2024-12-01')
+        );
+        actionQuery = 'Documents from December 2024';
+        toast.success(`Found ${filteredResults.length} recent documents`);
+      } else if (action === 'Meeting Summaries') {
+        filteredResults = allDocuments.filter(doc => 
+          doc.type.includes('Meeting')
+        );
+        actionQuery = 'Meeting summaries and minutes';
+        toast.success(`Found ${filteredResults.length} meeting documents`);
+      } else if (action === 'Document Export') {
+        filteredResults = allDocuments.slice(0, 3);
+        actionQuery = 'Documents ready for export';
+        toast.success(`Prepared ${filteredResults.length} documents for export`);
+      }
+      
+      setQuery(actionQuery);
+      setSearchResults(filteredResults);
+      setIsSearching(false);
+    }, 1200);
   };
 
   const handleSampleQuery = (queryText: string) => {
     setQuery(queryText);
-    toast.info('Sample query selected. Click Search to see results.');
+    // Auto-search for sample queries
+    setTimeout(() => {
+      const filteredResults = getFilteredDocuments(queryText);
+      setSearchResults(filteredResults);
+      setHasSearched(true);
+      toast.success(`Found ${filteredResults.length} documents for sample query`);
+    }, 500);
+  };
+
+  const handleApplyFilters = (filters: FilterCriteria) => {
+    setActiveFilters(filters);
+    setIsSearching(true);
+    setHasSearched(true);
+    
+    setTimeout(() => {
+      let filtered = allDocuments;
+      
+      if (filters.department) {
+        filtered = filtered.filter(doc => doc.department === filters.department);
+      }
+      
+      if (filters.documentType) {
+        filtered = filtered.filter(doc => doc.type === filters.documentType);
+      }
+      
+      if (filters.author) {
+        filtered = filtered.filter(doc => 
+          doc.author.toLowerCase().includes(filters.author!.toLowerCase())
+        );
+      }
+      
+      if (filters.tags && filters.tags.length > 0) {
+        filtered = filtered.filter(doc => 
+          filters.tags!.some(tag => doc.tags.includes(tag))
+        );
+      }
+      
+      if (filters.dateFrom) {
+        filtered = filtered.filter(doc => new Date(doc.date) >= new Date(filters.dateFrom!));
+      }
+      
+      if (filters.dateTo) {
+        filtered = filtered.filter(doc => new Date(doc.date) <= new Date(filters.dateTo!));
+      }
+      
+      setSearchResults(filtered);
+      setIsSearching(false);
+      setQuery('Advanced filter applied');
+      toast.success(`Found ${filtered.length} documents with applied filters`);
+    }, 1000);
   };
 
   const sampleQueries = [
@@ -174,7 +350,7 @@ const SearchInterface = () => {
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => handleQuickAction('Advanced Filter')}
+                    onClick={() => setShowAdvancedFilters(true)}
                     className="rounded-lg hover:bg-white/10"
                   >
                     <Filter className="h-4 w-4" />
@@ -290,6 +466,14 @@ const SearchInterface = () => {
           query={query} 
           results={searchResults} 
           isLoading={isSearching} 
+        />
+      )}
+
+      {/* Advanced Filters Modal */}
+      {showAdvancedFilters && (
+        <AdvancedFilters
+          onApplyFilters={handleApplyFilters}
+          onClose={() => setShowAdvancedFilters(false)}
         />
       )}
     </div>
