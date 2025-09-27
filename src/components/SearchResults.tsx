@@ -18,6 +18,7 @@ interface Document {
   fileSize: string;
   summary: string;
   summaryMalayalam: string;
+  fileName?: string;
 }
 
 interface SearchResultsProps {
@@ -168,7 +169,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query, results, isLoading
                   variant="outline" 
                   className="border-white/20"
                   onClick={() => {
-                    window.open(`/document/${doc.id}`, '_blank');
+                      window.open(`public/pdfs/${encodeURIComponent(doc.fileName)}`, '_blank');
                     // toast.success('Opening document viewer');
                   }}
                 >
@@ -182,7 +183,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query, results, isLoading
                   onClick={() => {
                     // Simulate download
                     const link = document.createElement('a');
-                    link.href = '#';
+                    link.href = `public/pdfs/${encodeURIComponent(doc.fileName)}`;
                     link.download = `${doc.title}.pdf`;
                     link.click();
                     // toast.success(`Downloading ${doc.title}`);

@@ -45,7 +45,8 @@ const SearchInterface = () => {
       tags: ['Maintenance', 'മെയിന്റനൻസ്', 'Technical', 'Monthly'],
       fileSize: '2.4 MB',
       summary: 'This report covers the monthly maintenance activities for all metro trains, including brake system checks, electrical diagnostics, and safety inspections.',
-      summaryMalayalam: 'ബ്രേക്ക് സിസ്റ്റം പരിശോധനകൾ, ഇലക്ട്രിക്കൽ ഡയഗ്നോസ്റ്റിക്സ്, സുരക്ഷാ പരിശോധനകൾ എന്നിവ ഉൾപ്പെടെ എല്ലാ മെട്രോ ട്രെയിനുകളുടെയും മാസിക അറ്റകുറ്റപ്പണി പ്രവർത്തനങ്ങൾ ഈ റിപ്പോർട്ട് ഉൾക്കൊള്ളുന്നു.'
+      summaryMalayalam: 'ബ്രേക്ക് സിസ്റ്റം പരിശോധനകൾ, ഇലക്ട്രിക്കൽ ഡയഗ്നോസ്റ്റിക്സ്, സുരക്ഷാ പരിശോധനകൾ എന്നിവ ഉൾപ്പെടെ എല്ലാ മെട്രോ ട്രെയിനുകളുടെയും മാസിക അറ്റകുറ്റപ്പണി പ്രവർത്തനങ്ങൾ ഈ റിപ്പോർട്ട് ഉൾക്കൊള്ളുന്നു.',
+      fileName: 'MALAYALAM_II.pdf',
     },
     {
       id: '2',
@@ -60,7 +61,8 @@ const SearchInterface = () => {
       tags: ['Safety', 'സുരക്ഷ', 'Platform', 'Operations'],
       fileSize: '1.8 MB',
       summary: 'New safety guidelines for platform staff including emergency procedures, crowd control measures, and communication protocols.',
-      summaryMalayalam: 'അടിയന്തര നടപടിക്രമങ്ങൾ, ജനക്കൂട്ടം നിയന്ത്രണ നടപടികൾ, ആശയവിനിമയ പ്രോട്ടോക്കോളുകൾ എന്നിവയുൾപ്പെടെ പ്ലാറ്റ്ഫോം സ്റ്റാഫിനുള്ള പുതിയ സുരക്ഷാ മാർഗ്ഗനിർദ്ദേശങ്ങൾ.'
+      summaryMalayalam: 'അടിയന്തര നടപടിക്രമങ്ങൾ, ജനക്കൂട്ടം നിയന്ത്രണ നടപടികൾ, ആശയവിനിമയ പ്രോട്ടോക്കോളുകൾ എന്നിവയുൾപ്പെടെ പ്ലാറ്റ്ഫോം സ്റ്റാഫിനുള്ള പുതിയ സുരക്ഷാ മാർഗ്ഗനിർദ്ദേശങ്ങൾ.',
+      fileName: 'govtorder2609202518_40_12.pdf'
     },
     {
       id: '3',
@@ -75,7 +77,8 @@ const SearchInterface = () => {
       tags: ['Meeting', 'മീറ്റിംഗ്', 'Track', 'Engineering'],
       fileSize: '856 KB',
       summary: 'Weekly engineering meeting discussing track inspection results, maintenance scheduling, and resource allocation for upcoming projects.',
-      summaryMalayalam: 'ട്രാക്ക് പരിശോധന ഫലങ്ങൾ, അറ്റകുറ്റപ്പണി ഷെഡ്യൂളിംഗ്, വരാനിരിക്കുന്ന പ്രോജക്ടുകൾക്കുള്ള റിസോഴ്സ് അലോക്കേഷൻ എന്നിവ ചർച്ച ചെയ്യുന്ന പ്രാപ്തിക എഞ്ചിനീയറിംഗ് മീറ്റിംഗ്.'
+      summaryMalayalam: 'ട്രാക്ക് പരിശോധന ഫലങ്ങൾ, അറ്റകുറ്റപ്പണി ഷെഡ്യൂളിംഗ്, വരാനിരിക്കുന്ന പ്രോജക്ടുകൾക്കുള്ള റിസോഴ്സ് അലോക്കേഷൻ എന്നിവ ചർച്ച ചെയ്യുന്ന പ്രാപ്തിക എഞ്ചിനീയറിംഗ് മീറ്റിംഗ്.',
+      fileName: 'govtorder2709202515_06_35.pdf'
     },
     {
       id: '4',
@@ -90,7 +93,9 @@ const SearchInterface = () => {
       tags: ['Technical', 'സാങ്കേതിക', 'Signal', 'CBTC'],
       fileSize: '3.2 MB',
       summary: 'Complete technical documentation for Communication Based Train Control system implementation and maintenance procedures.',
-      summaryMalayalam: 'കമ്യൂണിക്കേഷൻ ബേസ്ഡ് ട്രെയിൻ കൺട്രോൾ സിസ്റ്റം നടപ്പാക്കലിനും അറ്റകുറ്റപ്പണി നടപടിക്രമങ്ങൾക്കുമുള്ള പൂർണ്ണമായ സാങ്കേതിക ഡോക്യുമെന്റേഷൻ.'
+      summaryMalayalam: 'കമ്യൂണിക്കേഷൻ ബേസ്ഡ് ട്രെയിൻ കൺട്രോൾ സിസ്റ്റം നടപ്പാക്കലിനും അറ്റകുറ്റപ്പണി നടപടിക്രമങ്ങൾക്കുമുള്ള പൂർണ്ണമായ സാങ്കേതിക ഡോക്യുമെന്റേഷൻ.',
+      fileName: 'govtorder2609202518_40_12.pdf'
+
     },
     {
       id: '5',
@@ -105,7 +110,8 @@ const SearchInterface = () => {
       tags: ['Emergency', 'അടിയന്തിരം', 'Safety', 'Manual'],
       fileSize: '4.1 MB',
       summary: 'Emergency protocols for fire, medical emergencies, evacuations, and security incidents in metro operations.',
-      summaryMalayalam: 'മെട്രോ ഓപ്പറേഷനിലെ തീപിടുത്തം, മെഡിക്കൽ എമർജൻസി, ഒഴിപ്പിക്കൽ, സുരക്ഷാ സംഭവങ്ങൾ എന്നിവയ്ക്കുള്ള അടിയന്തര പ്രോട്ടോക്കോളുകൾ.'
+      summaryMalayalam: 'മെട്രോ ഓപ്പറേഷനിലെ തീപിടുത്തം, മെഡിക്കൽ എമർജൻസി, ഒഴിപ്പിക്കൽ, സുരക്ഷാ സംഭവങ്ങൾ എന്നിവയ്ക്കുള്ള അടിയന്തര പ്രോട്ടോക്കോളുകൾ.',
+      fileName: 'MALAYALAM_II.pdf',
     },
     {
       id: '6',
@@ -120,7 +126,8 @@ const SearchInterface = () => {
       tags: ['Traffic', 'ട്രാഫിക്', 'Analytics', 'Passenger'],
       fileSize: '1.5 MB',
       summary: 'Detailed analysis of passenger movement patterns, peak usage times, and recommendations for service optimization.',
-      summaryMalayalam: 'പാസഞ്ചർ ചലന പാറ്റേണുകൾ, പീക്ക് ഉപയോഗ സമയങ്ങൾ, സേവന ഒപ്റ്റിമൈസേഷനുള്ള ശുപാർശകൾ എന്നിവയുടെ വിശദമായ വിശകലനം.'
+      summaryMalayalam: 'പാസഞ്ചർ ചലന പാറ്റേണുകൾ, പീക്ക് ഉപയോഗ സമയങ്ങൾ, സേവന ഒപ്റ്റിമൈസേഷനുള്ള ശുപാർശകൾ എന്നിവയുടെ വിശദമായ വിശകലനം.',
+      fileName: 'govtorder2709202515_06_35.pdf'
     },
     {
       id: '7',
@@ -135,7 +142,8 @@ const SearchInterface = () => {
       tags: ['Power', 'വൈദ്യുതി', 'Electrical', 'Infrastructure'],
       fileSize: '5.2 MB',
       summary: 'Technical documentation covering 750V DC traction power systems, substations, and backup power arrangements.',
-      summaryMalayalam: '750വോൾട്ട് ഡിസി ട്രാക്ഷൻ പവർ സിസ്റ്റങ്ങൾ, സബ്സ്റ്റേഷനുകൾ, ബാക്കപ്പ് പവർ ക്രമീകരണങ്ങൾ എന്നിവ ഉൾക്കൊള്ളുന്ന സാങ്കേതിക ഡോക്യുമെന്റേഷൻ.'
+      summaryMalayalam: '750വോൾട്ട് ഡിസി ട്രാക്ഷൻ പവർ സിസ്റ്റങ്ങൾ, സബ്സ്റ്റേഷനുകൾ, ബാക്കപ്പ് പവർ ക്രമീകരണങ്ങൾ എന്നിവ ഉൾക്കൊള്ളുന്ന സാങ്കേതിക ഡോക്യുമെന്റേഷൻ.',
+      fileName: 'govtorder2709202515_06_35.pdf'
     },
     {
       id: '8',
@@ -150,7 +158,9 @@ const SearchInterface = () => {
       tags: ['Cleaning', 'ശുചീകരണം', 'Hygiene', 'SOP'],
       fileSize: '1.2 MB',
       summary: 'Detailed procedures for daily cleaning schedules, sanitization protocols, and waste management in metro stations.',
-      summaryMalayalam: 'മെട്രോ സ്റ്റേഷനുകളിലെ ദൈനംദിന ശുചീകരണ ഷെഡ്യൂൾ, അണുനശീകരണ പ്രോട്ടോക്കോളുകൾ, മാലിന്യ സംസ്കരണം എന്നിവയ്ക്കുള്ള വിശദമായ നടപടിക്രമങ്ങൾ.'
+      summaryMalayalam: 'മെട്രോ സ്റ്റേഷനുകളിലെ ദൈനംദിന ശുചീകരണ ഷെഡ്യൂൾ, അണുനശീകരണ പ്രോട്ടോക്കോളുകൾ, മാലിന്യ സംസ്കരണം എന്നിവയ്ക്കുള്ള വിശദമായ നടപടിക്രമങ്ങൾ.',
+      fileName: 'govtorder2709202515_06_35.pdf'
+
     },
     {
       id: '9',
@@ -165,7 +175,8 @@ const SearchInterface = () => {
       tags: ['Operating', 'പ്രവർത്തനം', 'Manual', 'Malayalam'],
       fileSize: '6.8 MB',
       summary: 'Comprehensive Malayalam translation of train operating procedures, safety protocols, and emergency procedures.',
-      summaryMalayalam: 'ട്രെയിൻ ഓപ്പറേറ്റിംഗ് പ്രൊസീജ്യറുകൾ, സുരക്ഷാ പ്രോട്ടോക്കോളുകൾ, അടിയന്തര നടപടിക്രമങ്ങൾ എന്നിവയുടെ സമഗ്ര മലയാളം വിവർത്തനം.'
+      summaryMalayalam: 'ട്രെയിൻ ഓപ്പറേറ്റിംഗ് പ്രൊസീജ്യറുകൾ, സുരക്ഷാ പ്രോട്ടോക്കോളുകൾ, അടിയന്തര നടപടിക്രമങ്ങൾ എന്നിവയുടെ സമഗ്ര മലയാളം വിവർത്തനം.',
+      fileName: 'govtorder2709202515_06_35.pdf'
     },
     {
       id: '10',
@@ -180,7 +191,8 @@ const SearchInterface = () => {
       tags: ['Communication', 'ആശയവിനിമയം', 'Passenger', 'Guidelines'],
       fileSize: '950 KB',
       summary: 'Standard phrases, announcements, and communication protocols for passenger interaction in multilingual environment.',
-      summaryMalayalam: 'ബഹുഭാഷാ പരിതസ്ഥിതിയിൽ യാത്രക്കാരുമായുള്ള ഇടപെടലിനുള്ള സാധാരണ വാക്യങ്ങൾ, പ്രഖ്യാപനങ്ങൾ, ആശയവിനിമയ പ്രോട്ടോക്കോളുകൾ.'
+      summaryMalayalam: 'ബഹുഭാഷാ പരിതസ്ഥിതിയിൽ യാത്രക്കാരുമായുള്ള ഇടപെടലിനുള്ള സാധാരണ വാക്യങ്ങൾ, പ്രഖ്യാപനങ്ങൾ, ആശയവിനിമയ പ്രോട്ടോക്കോളുകൾ.',
+      fileName: 'govtorder2709202515_06_35.pdf'
     },
     {
       id: '11',
@@ -195,7 +207,8 @@ const SearchInterface = () => {
       tags: ['CCTV', 'നിരീക്ഷണം', 'Security', 'Surveillance'],
       fileSize: '2.1 MB',
       summary: 'Analysis of CCTV coverage, system uptime, recorded incidents, and security breach prevention measures.',
-      summaryMalayalam: 'സിസിടിവി കവറേജ്, സിസ്റ്റം അപ്ടൈം, രേഖപ്പെടുത്തിയ സംഭവങ്ങൾ, സുരക്ഷാ ലംഘന തടയൽ നടപടികൾ എന്നിവയുടെ വിശകലനം.'
+      summaryMalayalam: 'സിസിടിവി കവറേജ്, സിസ്റ്റം അപ്ടൈം, രേഖപ്പെടുത്തിയ സംഭവങ്ങൾ, സുരക്ഷാ ലംഘന തടയൽ നടപടികൾ എന്നിവയുടെ വിശകലനം.',
+      fileName: 'govtorder2709202515_06_35.pdf'
     },
     {
       id: '12',
@@ -210,7 +223,8 @@ const SearchInterface = () => {
       tags: ['HVAC', 'എയർകണ്ടീഷനിംഗ്', 'Maintenance', 'Climate'],
       fileSize: '3.5 MB',
       summary: 'Detailed maintenance procedures for train and station HVAC systems including filter replacement and system diagnostics.',
-      summaryMalayalam: 'ട്രെയിനിലെയും സ്റ്റേഷനിലെയും എച്ച്വിഎസി സിസ്റ്റങ്ങളുടെ ഫിൽട്ടർ മാറ്റിസ്ഥാപിക്കലും സിസ്റ്റം ഡയഗ്നോസ്റ്റിക്സും ഉൾപ്പെടെയുള്ള വിശദമായ അറ്റകുറ്റപ്പണി നടപടിക്രമങ്ങൾ.'
+      summaryMalayalam: 'ട്രെയിനിലെയും സ്റ്റേഷനിലെയും എച്ച്വിഎസി സിസ്റ്റങ്ങളുടെ ഫിൽട്ടർ മാറ്റിസ്ഥാപിക്കലും സിസ്റ്റം ഡയഗ്നോസ്റ്റിക്സും ഉൾപ്പെടെയുള്ള വിശദമായ അറ്റകുറ്റപ്പണി നടപടിക്രമങ്ങൾ.',
+      fileName: 'govtorder2709202515_06_35.pdf'
     },
     {
       id: '13',
@@ -225,7 +239,8 @@ const SearchInterface = () => {
       tags: ['Revenue', 'വരുമാനം', 'Audit', 'Finance'],
       fileSize: '2.8 MB',
       summary: 'Comprehensive analysis of ticket sales, digital payments, fare collection efficiency, and financial reconciliation.',
-      summaryMalayalam: 'ടിക്കറ്റ് വിൽപ്പന, ഡിജിറ്റൽ പേയ്മെന്റുകൾ, യാത്രാ നിരക്ക് ശേഖരണ കാര്യക്ഷമത, സാമ്പത്തിക പൊരുത്തപ്പെടുത്തൽ എന്നിവയുടെ സമഗ്ര വിശകലനം.'
+      summaryMalayalam: 'ടിക്കറ്റ് വിൽപ്പന, ഡിജിറ്റൽ പേയ്മെന്റുകൾ, യാത്രാ നിരക്ക് ശേഖരണ കാര്യക്ഷമത, സാമ്പത്തിക പൊരുത്തപ്പെടുത്തൽ എന്നിവയുടെ സമഗ്ര വിശകലനം.',
+      fileName: 'govtorder2709202515_06_35.pdf'
     },
     {
       id: '14',
@@ -240,7 +255,9 @@ const SearchInterface = () => {
       tags: ['Fire Safety', 'അഗ്നിസുരക്ഷ', 'Prevention', 'Emergency'],
       fileSize: '4.3 MB',
       summary: 'Comprehensive fire prevention measures, detection systems, evacuation procedures, and firefighting protocols.',
-      summaryMalayalam: 'സമഗ്ര അഗ്നി പ്രതിരോധ നടപടികൾ, കണ്ടെത്തൽ സിസ്റ്റങ്ങൾ, ഒഴിപ്പിക്കൽ നടപടിക്രമങ്ങൾ, അഗ്നിശമന പ്രോട്ടോക്കോളുകൾ.'
+      summaryMalayalam: 'സമഗ്ര അഗ്നി പ്രതിരോധ നടപടികൾ, കണ്ടെത്തൽ സിസ്റ്റങ്ങൾ, ഒഴിപ്പിക്കൽ നടപടിക്രമങ്ങൾ, അഗ്നിശമന പ്രോട്ടോക്കോളകൾ.',
+      fileName: 'govtorder2709202515_06_35.pdf'
+
     },
     {
       id: '15',
@@ -255,7 +272,8 @@ const SearchInterface = () => {
       tags: ['Environment', 'പരിസ്ഥിതി', 'Sustainability', 'Assessment'],
       fileSize: '3.7 MB',
       summary: 'Assessment of carbon footprint, energy consumption, waste management, and green initiatives in metro operations.',
-      summaryMalayalam: 'മെട്രോ പ്രവർത്തനങ്ങളിലെ കാർബൺ കാൽപ്പാട്, ഊർജ്ജ ഉപഭോഗം, മാലിന്യ സംസ്കരണം, ഹരിത സംരംഭങ്ങൾ എന്നിവയുടെ മൂല്യനിർണ്ണയം.'
+      summaryMalayalam: 'മെട്രോ പ്രവർത്തനങ്ങളിലെ കാർബൺ കാൽപ്പാട്, ഊർജ്ജ ഉപഭോഗം, മാലിന്യ സംസ്കരണം, ഹരിത സംരംഭങ്ങൾ എന്നിവയുടെ മൂല്യനിർണ്ണയം.',
+      fileName: 'govtorder2709202515_06_35.pdf'
     }
   ];
 
