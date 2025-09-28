@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { FileText, Download, Eye, X, ZoomIn, ZoomOut } from 'lucide-react';
+import { FileText, Download, Eye, X, ZoomIn, ZoomOut, Search, Filter } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 interface Document {
@@ -17,6 +19,8 @@ interface Document {
 const DocumentViewer = () => {
   const [selectedDoc, setSelectedDoc] = useState<Document | null>(null);
   const [zoom, setZoom] = useState(100);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterStatus, setFilterStatus] = useState<string>('all');
 
   const documents: Document[] = [
     {
@@ -123,6 +127,13 @@ const DocumentViewer = () => {
     </div>
   );
 
+  const filteredDocuments = documents.filter(doc => {
+    const matchesSearch = doc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         doc.preview?.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus = filterStatus === 'all' || doc.status === filterStatus;
+    return matchesSearch && matchesStatus;
+  });
+
   return (
     <div className="p-6">
       <div className="mb-6">
@@ -130,8 +141,40 @@ const DocumentViewer = () => {
         <p className="text-gray-600">Browse and view your documents with built-in viewers</p>
       </div>
 
+      {/* Search and Filter */}
+      <div className="flex gap-4 mb-6">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <Input
+            placeholder="Search documents..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="pl-10 border-metro-primary/30"
+          />
+        </div>
+        <Select value={filterStatus} onValueChange={setFilterStatus}>
+          <SelectTrigger className="w-48 border-metro-primary/30">
+            <Filter className="h-4 w-4 mr-2" />
+            <SelectValue placeholder="Filter by status" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Documents</SelectItem>
+            <SelectItem value="active">Active</SelectItem>
+            <SelectItem value="under_review">Under Review</SelectItem>
+            <SelectItem value="archived">Archived</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {documents.map((doc) => (
+        {filteredDocuments.length === 0 ? (
+          <div className="col-span-full text-center py-12">
+            <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-gray-900 mb-2">No documents found</h3>
+            <p className="text-gray-600">Try adjusting your search or filter criteria</p>
+          </div>
+        ) : (
+          filteredDocuments.map((doc) => (
           <Card key={doc.id} className="hover:shadow-lg transition-shadow border-metro-primary/20">
             <CardHeader className="pb-3">
               <div className="flex items-start justify-between">
@@ -171,7 +214,8 @@ const DocumentViewer = () => {
               </Dialog>
             </CardContent>
           </Card>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );

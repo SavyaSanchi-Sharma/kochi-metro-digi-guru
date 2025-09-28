@@ -6,10 +6,11 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 interface LayoutProps {
   children: React.ReactNode;
+  activeSection: string;
+  setActiveSection: (section: string) => void;
 }
 
-const Layout = ({ children }: LayoutProps) => {
-  const [activeSection, setActiveSection] = useState('chat');
+const Layout = ({ children, activeSection, setActiveSection }: LayoutProps) => {
 
   const navigationItems = [
     { id: 'chat', label: 'AI Assistant', icon: MessageSquare },

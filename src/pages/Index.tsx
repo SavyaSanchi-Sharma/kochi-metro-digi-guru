@@ -23,7 +23,7 @@ const Index = () => {
   };
 
   return (
-    <Layout>
+    <Layout activeSection={activeSection} setActiveSection={setActiveSection}>
       {renderContent()}
     </Layout>
   );

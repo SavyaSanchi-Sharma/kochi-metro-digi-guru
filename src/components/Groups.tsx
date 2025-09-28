@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
-import { Users, MessageCircle, Hash, Plus, Settings, Bell } from 'lucide-react';
+import { Users, MessageCircle, Hash, Plus, Settings, Bell, Send } from 'lucide-react';
 
 interface Group {
   id: string;
@@ -27,7 +27,35 @@ interface Channel {
 
 const Groups = () => {
   const [selectedGroup, setSelectedGroup] = useState<string | null>('1');
+  const [selectedChannel, setSelectedChannel] = useState<string | null>('1');
   const [searchTerm, setSearchTerm] = useState('');
+  const [messages, setMessages] = useState<any[]>([
+    {
+      id: '1',
+      channelId: '1',
+      user: 'രാജേഷ് കുമാർ',
+      message: 'Daily operations report submitted',
+      timestamp: new Date(Date.now() - 300000),
+      avatar: 'RK'
+    },
+    {
+      id: '2', 
+      channelId: '1',
+      user: 'Sarah Johnson',
+      message: 'Platform 2 maintenance completed successfully',
+      timestamp: new Date(Date.now() - 600000),
+      avatar: 'SJ'
+    },
+    {
+      id: '3',
+      channelId: '2',
+      user: 'System',
+      message: 'New safety guidelines document uploaded',
+      timestamp: new Date(Date.now() - 900000),
+      avatar: 'SYS'
+    }
+  ]);
+  const [newMessage, setNewMessage] = useState('');
 
   const groups: Group[] = [
     {
@@ -109,6 +137,24 @@ const Groups = () => {
   const selectedGroupChannels = channels.filter(channel => 
     channel.groupId === selectedGroup
   );
+
+  const channelMessages = messages.filter(msg => msg.channelId === selectedChannel);
+
+  const handleSendMessage = () => {
+    if (!newMessage.trim() || !selectedChannel) return;
+    
+    const message = {
+      id: Date.now().toString(),
+      channelId: selectedChannel,
+      user: 'You',
+      message: newMessage,
+      timestamp: new Date(),
+      avatar: 'YOU'
+    };
+    
+    setMessages([...messages, message]);
+    setNewMessage('');
+  };
 
   return (
     <div className="flex h-[calc(100vh-73px)]">
@@ -203,7 +249,10 @@ const Groups = () => {
                   {selectedGroupChannels.map((channel) => (
                     <div
                       key={channel.id}
-                      className="flex items-center gap-2 p-2 rounded hover:bg-metro-secondary/50 cursor-pointer text-sm"
+                      className={`flex items-center gap-2 p-2 rounded hover:bg-metro-secondary/50 cursor-pointer text-sm transition-colors ${
+                        selectedChannel === channel.id ? 'bg-metro-secondary' : ''
+                      }`}
+                      onClick={() => setSelectedChannel(channel.id)}
                     >
                       <Hash className="h-4 w-4 text-gray-500" />
                       <span className="flex-1">{channel.name}</span>
@@ -219,38 +268,73 @@ const Groups = () => {
 
               {/* Chat Area */}
               <div className="flex-1 flex flex-col">
-                <div className="flex-1 p-4 bg-gray-50">
-                  <Card className="h-full border-metro-primary/20">
-                    <CardContent className="p-6 flex items-center justify-center h-full">
-                      <div className="text-center">
-                        <MessageCircle className="h-12 w-12 text-metro-primary mx-auto mb-4" />
-                        <h3 className="text-lg font-medium text-metro-dark mb-2">
-                          Welcome to {groups.find(g => g.id === selectedGroup)?.name}
-                        </h3>
-                        <p className="text-gray-600 mb-4">
-                          This is where your team communicates and collaborates on documents and projects.
-                        </p>
-                        <p className="text-sm text-gray-500">
-                          To enable full chat functionality, connect your project to Supabase using the green button in the top right.
-                        </p>
+                {selectedChannel ? (
+                  <>
+                    <div className="p-3 border-b border-metro-primary/20 bg-white">
+                      <h3 className="font-medium text-metro-dark">
+                        #{selectedGroupChannels.find(ch => ch.id === selectedChannel)?.name}
+                      </h3>
+                    </div>
+                    
+                    <div className="flex-1 p-4 bg-gray-50 overflow-y-auto">
+                      <div className="space-y-4">
+                        {channelMessages.length === 0 ? (
+                          <div className="text-center py-8">
+                            <MessageCircle className="h-8 w-8 text-gray-400 mx-auto mb-2" />
+                            <p className="text-gray-600 text-sm">No messages yet. Start the conversation!</p>
+                          </div>
+                        ) : (
+                          channelMessages.map((msg) => (
+                            <div key={msg.id} className="flex gap-3">
+                              <Avatar className="w-8 h-8 bg-metro-primary">
+                                <AvatarFallback className="text-white text-xs">
+                                  {msg.avatar}
+                                </AvatarFallback>
+                              </Avatar>
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <span className="font-medium text-sm text-metro-dark">{msg.user}</span>
+                                  <span className="text-xs text-gray-500">
+                                    {msg.timestamp.toLocaleTimeString()}
+                                  </span>
+                                </div>
+                                <p className="text-sm text-gray-700">{msg.message}</p>
+                              </div>
+                            </div>
+                          ))
+                        )}
                       </div>
-                    </CardContent>
-                  </Card>
-                </div>
+                    </div>
 
-                {/* Message Input */}
-                <div className="p-4 border-t border-metro-primary/20 bg-white">
-                  <div className="flex gap-2">
-                    <Input
-                      placeholder="Type a message..."
-                      className="flex-1 border-metro-primary/30"
-                      disabled
-                    />
-                    <Button className="bg-metro-primary hover:bg-metro-accent text-white" disabled>
-                      <MessageCircle className="h-4 w-4" />
-                    </Button>
+                    {/* Message Input */}
+                    <div className="p-4 border-t border-metro-primary/20 bg-white">
+                      <div className="flex gap-2">
+                        <Input
+                          placeholder="Type a message..."
+                          value={newMessage}
+                          onChange={(e) => setNewMessage(e.target.value)}
+                          onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                          className="flex-1 border-metro-primary/30"
+                        />
+                        <Button 
+                          onClick={handleSendMessage}
+                          disabled={!newMessage.trim()}
+                          className="bg-metro-primary hover:bg-metro-accent text-white"
+                        >
+                          <Send className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div className="flex-1 flex items-center justify-center">
+                    <div className="text-center">
+                      <Hash className="h-16 w-16 text-metro-primary mx-auto mb-4" />
+                      <h3 className="text-xl font-medium text-metro-dark mb-2">Select a Channel</h3>
+                      <p className="text-gray-600">Choose a channel to start messaging</p>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </>

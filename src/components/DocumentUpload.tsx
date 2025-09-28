@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { Badge } from '@/components/ui/badge';
 import { Upload, X, FileText, AlertCircle, CheckCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -22,6 +23,7 @@ const DocumentUpload = () => {
   const [dragActive, setDragActive] = useState(false);
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
+  const [uploadHistory, setUploadHistory] = useState<UploadedFile[]>([]);
   const { toast } = useToast();
 
   const handleDrag = useCallback((e: React.DragEvent) => {
@@ -74,8 +76,12 @@ const DocumentUpload = () => {
             ? { ...f, status: 'completed' as const, progress: 100 }
             : f
         ));
+        const completedFile = files.find(f => f.id === fileId);
+        if (completedFile) {
+          setUploadHistory(prev => [...prev, { ...completedFile, status: 'completed', progress: 100 }]);
+        }
         toast({
-          title: "Upload Complete",
+          title: "Upload Complete", 
           description: "Document uploaded successfully!",
         });
       } else {
@@ -185,6 +191,20 @@ const DocumentUpload = () => {
             <Button 
               className="w-full bg-metro-primary hover:bg-metro-accent text-white"
               disabled={files.length === 0 || !category}
+              onClick={() => {
+                files.forEach(file => {
+                  if (file.status === 'completed') {
+                    setUploadHistory(prev => [...prev, file]);
+                  }
+                });
+                setFiles([]);
+                setCategory('');
+                setDescription('');
+                toast({
+                  title: "Batch Upload Complete",
+                  description: `${files.length} documents uploaded successfully!`,
+                });
+              }}
             >
               Upload All Files
             </Button>
@@ -234,6 +254,31 @@ const DocumentUpload = () => {
                       <X className="h-4 w-4" />
                     </Button>
                   </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Upload History */}
+      {uploadHistory.length > 0 && (
+        <Card className="mt-6 border-metro-primary/20">
+          <CardHeader>
+            <CardTitle className="text-metro-dark">Recent Uploads</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              {uploadHistory.slice(-5).reverse().map((file) => (
+                <div key={file.id} className="flex items-center gap-3 p-2 bg-green-50 rounded-lg">
+                  <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-green-800 truncate">{file.name}</p>
+                    <p className="text-xs text-green-600">Successfully uploaded</p>
+                  </div>
+                  <Badge variant="secondary" className="bg-green-100 text-green-800">
+                    {category || 'General'}
+                  </Badge>
                 </div>
               ))}
             </div>
