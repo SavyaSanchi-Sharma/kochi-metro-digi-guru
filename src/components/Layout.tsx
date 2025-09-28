@@ -1,7 +1,6 @@
-import { useState } from 'react';
-import { SidebarProvider, Sidebar, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '@/components/ui/sidebar';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { FileText, MessageSquare, Upload, BarChart3, Users, Settings, Menu, Search } from 'lucide-react';
+import { FileText, MessageSquare, Upload, BarChart3, Users, Settings, Menu, Search, Moon, Sun } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 interface LayoutProps {
@@ -11,6 +10,23 @@ interface LayoutProps {
 }
 
 const Layout = ({ children, activeSection, setActiveSection }: LayoutProps) => {
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('theme') || 'light';
+    }
+    return 'light';
+  });
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.remove('light', 'dark');
+    root.classList.add(theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
 
   const navigationItems = [
     { id: 'chat', label: 'AI Assistant', icon: MessageSquare },
@@ -18,7 +34,7 @@ const Layout = ({ children, activeSection, setActiveSection }: LayoutProps) => {
     { id: 'upload', label: 'Upload', icon: Upload },
     { id: 'groups', label: 'Groups', icon: Users },
     { id: 'metrics', label: 'Metrics', icon: BarChart3 },
-    { id: 'workspace', label: 'AI Workspace', icon: Search },
+    { id: 'workspace', label: 'Document Search', icon: Search },
   ];
 
   const MobileNav = () => (
@@ -56,55 +72,52 @@ const Layout = ({ children, activeSection, setActiveSection }: LayoutProps) => {
   );
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="border-b border-metro-primary/20 bg-white">
-        <div className="flex items-center justify-between px-4 py-3">
-          <div className="flex items-center gap-4">
-            <MobileNav />
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-metro-primary rounded-lg flex items-center justify-center">
-                <FileText className="h-4 w-4 text-white" />
-              </div>
-              <h1 className="text-xl font-bold text-metro-dark">Metro Document System</h1>
-            </div>
+    <div className="min-h-screen bg-background">
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-14 items-center">
+          <div className="mr-4 hidden md:flex items-center space-x-2">
+            <h2 className="text-xl font-bold">Metro Docs</h2>
           </div>
-          <Button variant="outline" size="sm" className="border-metro-primary text-metro-primary hover:bg-metro-secondary">
-            <Settings className="h-4 w-4 mr-2" />
-            Settings
-          </Button>
+          
+          <nav className="hidden md:flex flex-1 items-center space-x-2">
+            {navigationItems.map((item) => (
+              <Button
+                key={item.id}
+                variant={activeSection === item.id ? "secondary" : "ghost"}
+                className={`${
+                  activeSection === item.id 
+                    ? "bg-metro-primary text-white hover:bg-metro-primary/90" 
+                    : "hover:bg-accent"
+                }`}
+                onClick={() => setActiveSection(item.id)}
+              >
+                <item.icon className="mr-2 h-4 w-4" />
+                {item.label}
+              </Button>
+            ))}
+          </nav>
+
+          <div className="flex items-center space-x-2 ml-auto">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="h-9 w-9"
+            >
+              {theme === 'light' ? (
+                <Moon className="h-4 w-4" />
+              ) : (
+                <Sun className="h-4 w-4" />
+              )}
+            </Button>
+            <MobileNav />
+          </div>
         </div>
       </header>
 
-      <div className="flex">
-        {/* Desktop Sidebar */}
-        <aside className="hidden md:flex w-64 bg-metro-light border-r border-metro-primary/20 min-h-[calc(100vh-73px)]">
-          <nav className="flex-1 p-4">
-            <div className="space-y-2">
-              {navigationItems.map((item) => (
-                <Button
-                  key={item.id}
-                  variant={activeSection === item.id ? "secondary" : "ghost"}
-                  className={`w-full justify-start ${
-                    activeSection === item.id 
-                      ? "bg-metro-primary text-white hover:bg-metro-primary/90" 
-                      : "text-metro-dark hover:bg-metro-secondary"
-                  }`}
-                  onClick={() => setActiveSection(item.id)}
-                >
-                  <item.icon className="mr-3 h-4 w-4" />
-                  {item.label}
-                </Button>
-              ))}
-            </div>
-          </nav>
-        </aside>
-
-        {/* Main Content */}
-        <main className="flex-1 min-h-[calc(100vh-73px)]">
-          {children}
-        </main>
-      </div>
+      <main className="container py-6">
+        {children}
+      </main>
     </div>
   );
 };

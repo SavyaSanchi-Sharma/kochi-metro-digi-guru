@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FileText, Calendar, Download, ExternalLink, User, Clock, Tag } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 
 interface Document {
   id: string;
@@ -27,7 +28,10 @@ interface SearchResultsProps {
   isLoading: boolean;
 }
 
+import DocumentViewer from './DocumentViewer';
+
 const SearchResults: React.FC<SearchResultsProps> = ({ query, results, isLoading }) => {
+  const [selectedDocument, setSelectedDocument] = useState<Document | null>(null);
   if (isLoading) {
     return (
       <div className="container mx-auto px-6 py-12">
@@ -103,7 +107,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query, results, isLoading
               link.click();
               URL.revokeObjectURL(url);
               
-              // toast.success(`Exported ${results.length} search results`);
+              toast.success(`Exported ${results.length} search results`);
             }}
           >
             <Download className="h-4 w-4 mr-2" />
@@ -117,9 +121,14 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query, results, isLoading
               {/* Document Header */}
               <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
-                  <h4 className="text-lg font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
-                    {doc.title}
-                  </h4>
+                  <button 
+                    onClick={() => setSelectedDocument(doc)}
+                    className="text-left hover:opacity-80 transition-opacity"
+                  >
+                    <h4 className="text-lg font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
+                      {doc.title}
+                    </h4>
+                  </button>
                   <p className="text-sm text-primary/80 mb-2">{doc.titleMalayalam}</p>
                   <div className="flex items-center space-x-4 text-sm text-muted-foreground">
                     <div className="flex items-center space-x-1">
@@ -169,8 +178,9 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query, results, isLoading
                   variant="outline" 
                   className="border-white/20"
                   onClick={() => {
-                      window.open(`public/pdfs/${encodeURIComponent(doc.fileName)}`, '_blank');
-                    // toast.success('Opening document viewer');
+                    const filePath = doc.fileName || '';
+                    window.open(`/${filePath}`, '_blank');
+                    toast.success('Opening document viewer');
                   }}
                 >
                   <ExternalLink className="h-4 w-4 mr-1" />
@@ -183,10 +193,11 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query, results, isLoading
                   onClick={() => {
                     // Simulate download
                     const link = document.createElement('a');
-                    link.href = `public/pdfs/${encodeURIComponent(doc.fileName)}`;
+                    const filePath = doc.fileName || '';
+                    link.href = `/${filePath}`;
                     link.download = `${doc.title}.pdf`;
                     link.click();
-                    // toast.success(`Downloading ${doc.title}`);
+                    toast.success(`Downloading ${doc.title}`);
                   }}
                 >
                   <Download className="h-4 w-4 mr-1" />

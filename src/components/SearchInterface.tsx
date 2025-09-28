@@ -9,6 +9,7 @@ import heroImage from '@/assets/kochi-metro-hero.jpg';
 import UserProfile from './UserProfile';
 import SearchResults from './SearchResults';
 import AdvancedFilters, { FilterCriteria } from './AdvancedFilters';
+import { documents } from '@/lib/documents';
 
 const SearchInterface = () => {
   const [query, setQuery] = useState('');
@@ -20,14 +21,19 @@ const SearchInterface = () => {
 
   // Dummy user data
   const currentUser = {
-    name: 'Rajesh Kumar',
-    role: 'Mechanical Engineer',
-    department: 'Rolling Stock Maintenance',
+    name: 'Rajesh Kumar / രാജേഷ് കുമാർ',
+    role: 'Mechanical Engineer / മെക്കാനിക്കൽ എഞ്ചിനീയർ',
+    department: 'Rolling Stock Maintenance / റോളിംഗ് സ്റ്റോക്ക് മെയിന്റനൻസ്',
     email: 'rajesh.kumar@kochimetro.org',
     phone: '+91 98470 12345',
     employeeId: 'KM2023001',
     joinDate: 'March 2023',
-    permissions: ['Document Access', 'Technical Reports', 'Maintenance Records', 'Safety Protocols']
+    permissions: [
+      'Document Access / രേഖകൾ ആക്സസ്',
+      'Technical Reports / സാങ്കേതിക റിപ്പോർട്ടുകൾ',
+      'Maintenance Records / അറ്റകുറ്റപ്പണി രേഖകൾ',
+      'Safety Protocols / സുരക്ഷാ മാർഗ്ഗനിർദ്ദേശങ്ങൾ'
+    ]
   };
 
   // Comprehensive dummy document data with diverse Malayalam documents
@@ -41,7 +47,7 @@ const SearchInterface = () => {
       type: 'Maintenance Report',
       date: '15 Dec 2024',
       author: 'Suresh Nair',
-      department: 'Rolling Stock',
+      department: 'public/pdfs/Rolling Stock',
       tags: ['Maintenance', 'മെയിന്റനൻസ്', 'Technical', 'Monthly'],
       fileSize: '2.4 MB',
       summary: 'This report covers the monthly maintenance activities for all metro trains, including brake system checks, electrical diagnostics, and safety inspections.',
@@ -62,7 +68,7 @@ const SearchInterface = () => {
       fileSize: '1.8 MB',
       summary: 'New safety guidelines for platform staff including emergency procedures, crowd control measures, and communication protocols.',
       summaryMalayalam: 'അടിയന്തര നടപടിക്രമങ്ങൾ, ജനക്കൂട്ടം നിയന്ത്രണ നടപടികൾ, ആശയവിനിമയ പ്രോട്ടോക്കോളുകൾ എന്നിവയുൾപ്പെടെ പ്ലാറ്റ്ഫോം സ്റ്റാഫിനുള്ള പുതിയ സുരക്ഷാ മാർഗ്ഗനിർദ്ദേശങ്ങൾ.',
-      fileName: 'govtorder2609202518_40_12.pdf'
+      fileName: 'public/pdfs/govtorder2609202518_40_12.pdf'
     },
     {
       id: '3',
@@ -78,7 +84,7 @@ const SearchInterface = () => {
       fileSize: '856 KB',
       summary: 'Weekly engineering meeting discussing track inspection results, maintenance scheduling, and resource allocation for upcoming projects.',
       summaryMalayalam: 'ട്രാക്ക് പരിശോധന ഫലങ്ങൾ, അറ്റകുറ്റപ്പണി ഷെഡ്യൂളിംഗ്, വരാനിരിക്കുന്ന പ്രോജക്ടുകൾക്കുള്ള റിസോഴ്സ് അലോക്കേഷൻ എന്നിവ ചർച്ച ചെയ്യുന്ന പ്രാപ്തിക എഞ്ചിനീയറിംഗ് മീറ്റിംഗ്.',
-      fileName: 'govtorder2709202515_06_35.pdf'
+      fileName: 'public/pdfs/govtorder2709202515_06_35.pdf'
     },
     {
       id: '4',
@@ -94,7 +100,7 @@ const SearchInterface = () => {
       fileSize: '3.2 MB',
       summary: 'Complete technical documentation for Communication Based Train Control system implementation and maintenance procedures.',
       summaryMalayalam: 'കമ്യൂണിക്കേഷൻ ബേസ്ഡ് ട്രെയിൻ കൺട്രോൾ സിസ്റ്റം നടപ്പാക്കലിനും അറ്റകുറ്റപ്പണി നടപടിക്രമങ്ങൾക്കുമുള്ള പൂർണ്ണമായ സാങ്കേതിക ഡോക്യുമെന്റേഷൻ.',
-      fileName: 'govtorder2609202518_40_12.pdf'
+      fileName: 'public/pdfs/govtorder2609202518_40_12.pdf'
 
     },
     {
@@ -111,7 +117,7 @@ const SearchInterface = () => {
       fileSize: '4.1 MB',
       summary: 'Emergency protocols for fire, medical emergencies, evacuations, and security incidents in metro operations.',
       summaryMalayalam: 'മെട്രോ ഓപ്പറേഷനിലെ തീപിടുത്തം, മെഡിക്കൽ എമർജൻസി, ഒഴിപ്പിക്കൽ, സുരക്ഷാ സംഭവങ്ങൾ എന്നിവയ്ക്കുള്ള അടിയന്തര പ്രോട്ടോക്കോളുകൾ.',
-      fileName: 'MALAYALAM_II.pdf',
+      fileName: 'public/pdfs/MALAYALAM_II.pdf',
     },
     {
       id: '6',
@@ -127,7 +133,7 @@ const SearchInterface = () => {
       fileSize: '1.5 MB',
       summary: 'Detailed analysis of passenger movement patterns, peak usage times, and recommendations for service optimization.',
       summaryMalayalam: 'പാസഞ്ചർ ചലന പാറ്റേണുകൾ, പീക്ക് ഉപയോഗ സമയങ്ങൾ, സേവന ഒപ്റ്റിമൈസേഷനുള്ള ശുപാർശകൾ എന്നിവയുടെ വിശദമായ വിശകലനം.',
-      fileName: 'govtorder2709202515_06_35.pdf'
+      fileName: 'public/pdfs/govtorder2709202515_06_35.pdf'
     },
     {
       id: '7',
@@ -143,7 +149,7 @@ const SearchInterface = () => {
       fileSize: '5.2 MB',
       summary: 'Technical documentation covering 750V DC traction power systems, substations, and backup power arrangements.',
       summaryMalayalam: '750വോൾട്ട് ഡിസി ട്രാക്ഷൻ പവർ സിസ്റ്റങ്ങൾ, സബ്സ്റ്റേഷനുകൾ, ബാക്കപ്പ് പവർ ക്രമീകരണങ്ങൾ എന്നിവ ഉൾക്കൊള്ളുന്ന സാങ്കേതിക ഡോക്യുമെന്റേഷൻ.',
-      fileName: 'govtorder2709202515_06_35.pdf'
+      fileName: 'public/pdfs/govtorder2709202515_06_35.pdf'
     },
     {
       id: '8',

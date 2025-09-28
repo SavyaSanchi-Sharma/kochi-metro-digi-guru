@@ -25,20 +25,20 @@ const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({ onApplyFilters, onClo
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const departments = [
-    'Rolling Stock',
-    'Operations', 
-    'Engineering',
-    'Signal & Telecom',
-    'Safety & Security'
+    'Rolling Stock / റോളിംഗ് സ്റ്റോക്ക്',
+    'Operations / ഓപ്പറേഷൻസ്', 
+    'Engineering / എഞ്ചിനീയറിംഗ്',
+    'Signal & Telecom / സിഗ്നൽ & ടെലികോം',
+    'Safety & Security / സുരക്ഷ & സെക്യൂരിറ്റി'
   ];
 
   const documentTypes = [
-    'Maintenance Report',
-    'Safety Document',
-    'Meeting Minutes',
-    'Technical Document',
-    'Emergency Manual',
-    'Analytics Report'
+    'Maintenance Report / അറ്റകുറ്റപ്പണി റിപ്പോർട്ട്',
+    'Safety Document / സുരക്ഷാ രേഖ',
+    'Meeting Minutes / മീറ്റിംഗ് മിനിറ്റ്സ്',
+    'Technical Document / സാങ്കേതിക രേഖ',
+    'Emergency Manual / അടിയന്തിര മാനുവൽ',
+    'Analytics Report / അനലിറ്റിക്സ് റിപ്പോർട്ട്'
   ];
 
   const availableTags = [
